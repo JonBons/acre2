@@ -117,17 +117,17 @@ SQF equivalent of extensions/src/ACRE2Shared/Types.h
 #define HASH_CREATE_NAMESPACE (createHashMap)
 #define HASH_CREATE (createHashMap)
 #define HASH_DELETE(hash) (hash = nil)
-#define HASH_HASKEY(hash, key) (key in hash)
-#define HASH_SET(hash, key, val) (hash set [key,val])
-#define HASH_GET(hash, key) (hash get key)
-#define HASH_REM(hash, key) (hash deleteAt key)
+#define HASH_HASKEY(hash, key) ((toLowerANSI key) in hash)
+#define HASH_SET(hash, key, val) (hash set [(toLowerANSI key),val])
+#define HASH_GET(hash, key) (hash get (toLowerANSI key))
+#define HASH_REM(hash, key) (hash deleteAt (toLowerANSI key))
 #define HASH_COPY(hash) (+hash)
 #define HASH_KEYS(hash) (keys hash)
 
 #define HASHLIST_CREATELIST(keys) []
 #define HASHLIST_CREATEHASH(hashList) HASH_CREATE
 #define HASHLIST_SELECT(hashList, index) (hashList select index)
-#define HASHLIST_SET(hashList, index, value) (hashList set[index, value])
+#define HASHLIST_SET(hashList, index, value) (hashList set [index, value])
 #define HASHLIST_PUSH(hashList, value) (hashList pushBack value)
 
 #define BASECLASS(radioId) ([radioId] call EFUNC(sys_radio,getRadioBaseClassname))
